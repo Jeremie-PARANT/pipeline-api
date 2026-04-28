@@ -28,6 +28,12 @@ app.get('/users', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Exporter l'app pour les tests
+module.exports = app;
+
+// Ne démarrer le serveur que si ce fichier est exécuté directement
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
